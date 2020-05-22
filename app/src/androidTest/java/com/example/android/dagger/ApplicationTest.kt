@@ -32,8 +32,8 @@ class ApplicationTest {
 
         // Should be in Registration/EnterDetails because the user is not registered
         onView(withText("Register to Dagger World!")).check(matches(isDisplayed()))
-        onView(withId(R.id.username)).perform(typeText("username"), closeSoftKeyboard())
-        onView(withId(R.id.password)).perform(typeText("password"), closeSoftKeyboard())
+        onView(withId(R.id.username)).perform(replaceText("username")) // 日本語入力を避けるためにreplaceText()を使用
+        onView(withId(R.id.password)).perform(replaceText("password"))
         onView(withId(R.id.next)).perform(click())
 
         // Registration/T&Cs
@@ -50,7 +50,7 @@ class ApplicationTest {
 
         // Login
         onView(withText("Welcome to Dagger World!")).check(matches(isDisplayed()))
-        onView(withId(R.id.password)).perform(typeText("password"), closeSoftKeyboard())
+        onView(withId(R.id.password)).perform(replaceText("password"))
         onView(withText("LOGIN")).perform(click())
 
         // Main
